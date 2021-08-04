@@ -13,7 +13,7 @@ namespace Logica
         {
             autores.Add(autor);
         }
-
+      
         public int TraerCantidad(List<Entidades.Autor> autores)
         {
             int intCantidad = autores.Count;
@@ -46,6 +46,16 @@ namespace Logica
 
             }
 
+        }
+        //metodos de acceso a la BD
+        public void Agregar(Entidades.Autor autor)
+        {
+            Datos.Autor.Agregar(autor);
+        }
+
+        public List<Entidades.Autor> Traer()
+        {
+            return Datos.Autor.Traer();
         }
     }
 }

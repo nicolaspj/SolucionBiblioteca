@@ -18,6 +18,7 @@ namespace ConsolaTest
                 Console.WriteLine("Consola Presentacion");
                 Console.WriteLine("\n1.Agregar \n2.Mostrar Lista \n3.Filtrar x Pais \n4.Borrar \n5. Fin ");
                 Console.WriteLine("****************");
+                
                 intOpcion = Convert.ToInt32(Console.ReadLine());
                 switch (intOpcion)
                 {
@@ -54,14 +55,22 @@ namespace ConsolaTest
             Console.Write("nombre:");
             objEntidad.Nombre = Console.ReadLine();
             Console.Write("fecha nac:");
+            
+            
+            
             objEntidad.FechaNacimiento = Convert.ToDateTime(Console.ReadLine());
             Console.Write("nacionalidad:");
             objEntidad.Nacionalidad = Console.ReadLine();
 
+            /* Logica.Autor objLogica = new Logica.Autor();
+             objLogica.Agregar(objEntidad, listaAutores);
+            --para agregar sin la bd
+             */
+            //para agregar con la BD
             Logica.Autor objLogica = new Logica.Autor();
-            objLogica.Agregar(objEntidad, listaAutores);
+            objLogica.Agregar(objEntidad);
 
-            Console.WriteLine("Autor agfregado ,pulse para continuar");
+            Console.WriteLine("Autor agregado a la BD ,pulse para continuar");
             Console.ReadKey();
         }
 
@@ -69,11 +78,13 @@ namespace ConsolaTest
         {
             Logica.Autor objLogica = new Logica.Autor();
             //mostramos autores
-            foreach (var a in listaAutores)
+            List<Entidades.Autor> listaAutores = objLogica.Traer();
+            Console.WriteLine("Autores");
+            foreach (var a in objLogica.Traer())
             {
                 Console.WriteLine($"{a.Id} {a.Apellido} {a.Nombre} {a.FechaNacimiento} {a.Nacionalidad}");
             }
-            Console.WriteLine($"\nCantidad de autores : {objLogica.TraerCantidad(listaAutores)}");
+            Console.WriteLine($"\nCantidad de autores : {listaAutores.Count} / pulse para continuar");
             Console.ReadKey();
         }
         static void MostrarxPais()
