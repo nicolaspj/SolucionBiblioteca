@@ -10,13 +10,13 @@ namespace Entidades
      public class Autor
     {   //constructor
         public Autor() { }
-        public Autor(int pId , string pApellido, string pNombre, DateTime pFechaNacimiento, string pNacionalidad)
+        public Autor(int pId , string pApellido, string pNombre, DateTime pFechaNacimiento)
         {
             Id = pId;
             Apellido = pApellido;
             Nombre = pNombre;
             FechaNacimiento = pFechaNacimiento;
-            Nacionalidad = pNacionalidad;
+          
 
     }
     //atributos
@@ -43,7 +43,9 @@ namespace Entidades
         }
 
         //propiedades autopimoplementadas
+        public int IdPais{ get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public string Nacionalidad { get; set; }
+        public virtual Pais Pais{ get; set; }
+        public List<Libro> Libros{ get; set; }
     }
 }

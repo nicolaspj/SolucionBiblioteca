@@ -20,32 +20,23 @@ namespace Logica
             return intCantidad;
         }
 
-        public List<Entidades.Autor> FiltrarxPais (string pais, List<Entidades.Autor> autores)
+        public List<Entidades.Autor> FiltrarxPais(string pais, List<Entidades.Autor> autores)
         {
             var lista = from a in autores
-                        where a.Nacionalidad == pais
+                        where a.Nombre == pais
                         select a;
-                return lista.ToList();
+            return lista.ToList();
         }
 
 
         public void Modificar (Entidades.Autor autor)
         {
-
+            Datos.Autor.Modificar(autor);
         }
 
-        public void Borrar (int id, List<Entidades.Autor> lista)
+        public void Borrar (int id)
         {
-            foreach (var item in lista)
-            {
-                if(id ==item.Id)
-                {
-                    lista.Remove(item);
-                    break;
-                }
-
-            }
-
+            Datos.Autor.Borrar(id);
         }
         //metodos de acceso a la BD
         public void Agregar(Entidades.Autor autor)
